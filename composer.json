@@ -1,4 +1,12 @@
 {
   "name": "deividfortuna/brain",
-  "description": "Brain is a basic PHP MVC framework for rapid website development"
+  "description": "Brain is a basic PHP MVC framework for rapid website development",
+  "homepage": "https://github.com/deividfortuna/brain",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Deivid Fortuna",
+      "email": "deividfortuna@gmail.com"
+    }
+  ]
 }
