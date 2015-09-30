@@ -7,8 +7,8 @@ namespace Brain;
  * A identificação é baseada na url acessada.
  * Também é responsável pelo autoload das classes do sistema e das aplicações.
  *
- * @author  Felipe Toreti <toreti@gmail.com>
- * @version 09/06/2014
+ * @author  Deivid Fortuna <deividfortuna@gmail.com>, Felipe Toreti <toreti@gmail.com>
+ * @version 30/09/2015
  * @package Brain
  */
 class System
@@ -36,7 +36,7 @@ class System
     /**
      * @var string Url da aplicação atual.
      */
-    private function __construct()
+    public function __construct()
     {
         spl_autoload_register(array($this, 'autoload'));
     }

@@ -6,6 +6,6 @@ namespace Brain;
  */
 interface CacheInterface
 {
-	public function load();
-	public function creatCacheFile();
+	function load();
+	function creatCacheFile();
 }

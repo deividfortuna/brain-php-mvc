@@ -1,4 +1,10 @@
 <?php
+/**
+ * 
+ * @author Deivid Fortuna <deividfortuna@gmail.com>
+ */
+use Brain\System;
+
 ob_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -17,4 +23,5 @@ require_once 'lib/brain/Constants.php';
 //include_once 'vendor/autoload.php';
 require_once 'lib/brain/System.php';
 
-Brain\System::instance()->wake();
+$Brain = new System();
+$Brain->wake();
