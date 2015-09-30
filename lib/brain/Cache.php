@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author  Deivid Fortuna <deividfortuna@gmail.com>
+ * @package Brain
+ */
 namespace Brain;
 
 
