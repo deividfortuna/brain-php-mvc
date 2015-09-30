@@ -1,10 +1,9 @@
 <?php
-/**
- * @author  Deivid Fortuna <deividfortuna@gmail.com>
- * @package Brain
- */
 namespace Brain;
-
+/**
+* @author  Deivid Fortuna <deividfortuna@gmail.com>
+* @package Brain
+*/
 
 class Cache {
 
@@ -17,11 +16,6 @@ class Cache {
 
     public static $validity = 1; // em minutos
 
-    /**
-     * Retorna a instancia da classe.
-     *
-     * @return Cache
-     */
     public static function instance()
     {
         if (!isset(self::$instance)) {
