@@ -1,10 +1,9 @@
 <?php
-/**
- * 
- * @author Deivid Fortuna <deividfortuna@gmail.com>
- */
 use Brain\System;
-
+/**
+ * @author Deivid Fortuna <deividfortuna@gmail.com>
+ * 
+ */
 ob_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
