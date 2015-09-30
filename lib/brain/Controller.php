@@ -44,9 +44,10 @@ abstract class Controller
     /**
      * É criada uma instancia de View para facilitar sua configuração.
      */
-    public function __construct()
+    public function __construct($View)
     {
-        $this->View = new View();
+    	$this->View = $View;
+        //$this->View = new View();
     }
 
     /**

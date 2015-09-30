@@ -159,8 +159,9 @@ class System
             $controller       = '\\App\\Controller\\Home';
         }
 
+        $View = new View();
         // Instancia o controller e executa a action
-        $Controller = new $controller();
+        $Controller = new $controller($View);
         $action     = method_exists($Controller, $this->action) ? $this->action : 'notFound';
         $Controller->System = $this;
         $Controller->$action();

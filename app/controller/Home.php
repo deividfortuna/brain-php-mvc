@@ -5,6 +5,7 @@ use App\Model\Blog;
 use App\Model\Depoimentos;
 use App\Model\Obras;
 use Brain\Controller;
+use Brain\Cache;
 
 class Home extends Controller
 {
@@ -26,10 +27,14 @@ class Home extends Controller
 
     public function debug()
     {
-        //\Brain\Cache::instance()->load();
-
+		$Cache = new Cache($this->System);
+		
         $this->debug = true;
-        $this->View->setView('home/action');
+        
+        $this->View
+        	->setCacheProvider($Cache)
+        	->setDoCache()
+        	->setView('home/action');
     }
 
     public function index()
@@ -48,10 +53,12 @@ class Home extends Controller
 
     public function modal()
     {
-        /*
-         * Informa que você deseja realizar o cache dessa página
-         */
-        $this->View->setDoCache();
+        $Cache = new Cache($this->System);
+        
+        $this->View
+        	->setCacheProvider($Cache)
+        	->setDoCache();
+        
 
         $data          = null;
 

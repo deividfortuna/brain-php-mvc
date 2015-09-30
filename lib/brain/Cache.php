@@ -5,16 +5,21 @@ namespace Brain;
 * @package Brain
 */
 
-class Cache {
+class Cache implements CacheInterface
+{
 
-    private static $_System;
-    private static $_path;
-    private static $_file_path;
-    private static $_creat_cache_file = false;
+    private $_System;
+    private $_path;
+    private $_file_path;
+    private $_creat_cache_file = false;
 
     private static $instance;
 
-    public static $validity = 1; // em minutos
+    public $validity = 1; // em minutos
+    
+    public function __construct($System){
+    	$this->_System = $System;
+    }
 
     public static function instance()
     {
@@ -25,47 +30,51 @@ class Cache {
         return self::$instance;
     }
 
-    public static function load()
+    public function load()
     {
-        self::$_System     = \Brain\System::instance();
-        if(self::cacheFileIsValid()) self::loadCacheFile();
-        else self::$_creat_cache_file = true;
+        if($this->cacheFileIsValid()) {
+        	$this->loadCacheFile();
+        } else {
+        	$this->_creat_cache_file = true;
+        }
     }
 
-    private static function setPath()
+    private function setPath()
     {
-        $path       = DIR_ROOT . strtolower('cache/' . self::$_System->getController() . '/');
+        $path       = DIR_ROOT . strtolower('cache/' . $this->_System->getController() . '/');
         if(!is_dir($path)) mkdir($path, 0777, true);
 
         return $path;
     }
 
-    private static function getPath()
+    private function getPath()
     {
-        if(empty(self::$_path)) return self::setPath();
-        else return self::$_path;
+        if(empty($this->_path)){
+        	return $this->setPath();
+        } else {
+        	return $this->_path;
+        }
     }
 
-    private static function setFilePath()
+    private function setFilePath()
     {
-        //var_dump(self::$_System->getUrl()); exit(); die;
-        $file_name = implode("_", self::$_System->getUrl());
+        $file_name = implode("_", $this->_System->getUrl());
         $file_name = (empty($file_name)) ? 'home_index' : $file_name;
 
-        self::$_file_path  = self::getPath() . strtolower($file_name). '.tmp';
-        return self::$_file_path;
+        $this->_file_path  = $this->getPath() . strtolower($file_name). '.tmp';
+        return $this->_file_path;
     }
 
-    private static function getFilePath()
+    private function getFilePath()
     {
-        if(empty(self::$_file_path)) return self::setFilePath();
-        else return self::$_file_path;
+        if(empty($this->_file_path)) return $this->setFilePath();
+        else return $this->_file_path;
     }
 
-    public static function creatCacheFile()
+    public function creatCacheFile()
     {
-        if (self::$_creat_cache_file) {
-            $fp       = fopen(self::getFilePath(), 'w');
+        if ($this->_creat_cache_file) {
+            $fp       = fopen($this->getFilePath(), 'w');
             $contents = ob_get_contents();
             $contents .= "<!-- Cached at time: " . date('d/m/Y h:i:s') . "-->";
             fwrite($fp, $contents);
@@ -74,16 +83,16 @@ class Cache {
         ob_end_flush();
     }
 
-    private static function loadCacheFile()
+    private function loadCacheFile()
     {
-        if(file_exists(self::getFilePath()))
-            require_once self::getFilePath();
+        if(file_exists($this->getFilePath()))
+            require_once $this->getFilePath();
         exit();
     }
 
-    private static function cacheFileIsValid()
+    private function cacheFileIsValid()
     {
-        if(!file_exists(self::getFilePath())) return false;
-        return (time() - (self::$validity * 60) < filemtime(self::getFilePath()));
+        if(!file_exists($this->getFilePath())) return false;
+        return (time() - ($this->validity * 60) < filemtime($this->getFilePath()));
     }
 } 

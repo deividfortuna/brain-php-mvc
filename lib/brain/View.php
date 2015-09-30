@@ -13,7 +13,8 @@ class View
     public $dirView;
     private $layout;
     private $view;
-    private $do_cache = false;
+    private $doCache = false;
+    private $CacheProvider;
     
     public function getData()
     {
@@ -63,7 +64,13 @@ class View
     }
 
     public function setDoCache(){
-        $this->do_cache = true;
+        $this->doCache = true;
+        return $this;
+    }
+    
+    public function setCacheProvider($Cache){
+    	$this->CacheProvider = $Cache;
+    	return $this;
     }
 
     protected function show($view, array $data = null)
@@ -93,8 +100,8 @@ class View
 
     public function showLayout()
     {
-        if($this->do_cache) {
-            \Brain\Cache::instance()->load();
+        if($this->doCache) {
+            $this->CacheProvider->load();
         }
 
         if (is_null($this->layout)) {
@@ -102,8 +109,8 @@ class View
         }
         $this->show($this->layout, $this->data);
 
-        if($this->do_cache) {
-            \Brain\Cache::instance()->creatCacheFile();
+        if($this->doCache) {
+            $this->CacheProvider->creatCacheFile();
         }
         exit;
     }
