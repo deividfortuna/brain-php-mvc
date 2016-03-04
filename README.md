@@ -2,9 +2,6 @@ Brain
 =====
 MVC para criação de projetos em PHP.
 
-###Próximos passos
-+ Criar estrutura para HTTP RESTFUL
-
 ###Padrões
 + Toda App deve ter o controller Home
 + Todo controller Home deve ter as actions index e notFound
