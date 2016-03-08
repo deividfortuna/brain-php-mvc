@@ -11,5 +11,6 @@ MVC para criação de projetos em PHP.
 Tradução das PSRs para a língua portuguesa:
 https://github.com/enricopvarella/fig-standards/tree/master/accepted/pt-br
 
+---
 git - guia prático:
 http://rogerdudler.github.io/git-guide/index.pt_BR.html
