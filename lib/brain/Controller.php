@@ -5,7 +5,7 @@ namespace Brain;
  * Controla a exibição de views e uso de suas variáveis.
  * Também resgata de parâmetros da url obtidos por System.
  *
- * @author  Felipe Toreti <toreti@gmail.com>
+ * @author  Deivid Fortuna <deividfortuna@gmail.com> Felipe Toreti <toreti@gmail.com>
  * @version 09/06/2014
  * @package Brain
  */
