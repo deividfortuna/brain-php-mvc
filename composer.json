@@ -8,5 +8,14 @@
       "name": "Deivid Fortuna",
       "email": "deividfortuna@gmail.com"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {"Application\\": "src/", "Brain\\": "src/"}
+  },
+  "require": {
+    "php-di/php-di": "^5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "3.7.*"
+  }
 }

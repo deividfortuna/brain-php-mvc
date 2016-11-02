@@ -43,11 +43,11 @@ abstract class Controller
 
     /**
      * É criada uma instancia de View para facilitar sua configuração.
+     * @param View $view
      */
-    public function __construct($View)
+    public function __construct(View $view)
     {
-    	$this->View = $View;
-        //$this->View = new View();
+    	$this->View = $view;
     }
 
     /**
@@ -107,11 +107,6 @@ abstract class Controller
     abstract public function index();
 
     /**
-     * Executado quando a action não for encontrada.
-     */
-    abstract public function notFound();
-
-    /**
      * Extrai os parametros da url.
      */
     private function setParam()
@@ -142,7 +137,7 @@ abstract class Controller
      */
     public function view()
     {
-        $this->View->dirView = DIR_ROOT.'app'.DIRECTORY_SEPARATOR.'view'.DIRECTORY_SEPARATOR;
+        $this->View->dirView = DIR_ROOT.'src/Application'.DIRECTORY_SEPARATOR.'View'.DIRECTORY_SEPARATOR;
         $this->View->showLayout();
     }
 }

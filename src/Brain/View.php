@@ -15,17 +15,17 @@ class View
     private $view;
     private $doCache = false;
     private $CacheProvider;
-    
+
     public function getData()
     {
         return $this->data;
     }
-    
+
     public function getLayout()
     {
         return $this->layout;
     }
-    
+
     public function getView()
     {
         return $this->view;
@@ -63,23 +63,29 @@ class View
         return $this;
     }
 
-    public function setDoCache(){
+    public function setDoCache()
+    {
         $this->doCache = true;
         return $this;
     }
-    
-    public function setCacheProvider($Cache){
-    	$this->CacheProvider = $Cache;
-    	return $this;
+
+    public function setCacheProvider($Cache)
+    {
+        $this->CacheProvider = $Cache;
+        return $this;
     }
 
     protected function show($view, array $data = null)
     {
+        $view = str_replace('/', DIRECTORY_SEPARATOR, $view);
+
+        if ($view == DIRECTORY_SEPARATOR) {
+            return;
+        }
         if (!is_null($data)) {
             extract($data);
         }
-        $view = str_replace('/', DIRECTORY_SEPARATOR, $view);
-        require_once $this->dirView.$view.'.phtml';
+        require_once $this->dirView . $view . '.phtml';
     }
 
 
@@ -87,20 +93,20 @@ class View
     {
         $this->show($view, $this->data);
     }
-    
+
     protected function showElement($element, array $data = null)
     {
-        $this->show('element/'.$element, $data);
+        $this->show('element/' . $element, $data);
     }
-    
+
     protected function showElementWithData($element)
     {
-        $this->show('element/'.$element, $this->data);
+        $this->show('element/' . $element, $this->data);
     }
 
     public function showLayout()
     {
-        if($this->doCache) {
+        if ($this->doCache) {
             $this->CacheProvider->load();
         }
 
@@ -109,17 +115,17 @@ class View
         }
         $this->show($this->layout, $this->data);
 
-        if($this->doCache) {
+        if ($this->doCache) {
             $this->CacheProvider->creatCacheFile();
         }
         exit;
     }
-    
+
     protected function showView()
     {
         if (is_null($this->view)) {
             $S = System::instance();
-            $this->view = lcfirst($S->getController()).DIRECTORY_SEPARATOR.$S->getAction();
+            $this->view = lcfirst($S->getController()) . DIRECTORY_SEPARATOR . $S->getAction();
         }
         $this->show($this->view, $this->data);
     }
