@@ -10,7 +10,10 @@
     }
   ],
   "autoload": {
-    "psr-4": {"Application\\": "src/", "Brain\\": "src/"}
+    "psr-4": {
+      "Application\\": "src/Application/",
+      "Brain\\": "src/Brain/"
+    }
   },
   "require": {
     "php-di/php-di": "^5.4"
