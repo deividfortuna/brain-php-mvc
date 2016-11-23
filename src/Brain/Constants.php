@@ -5,7 +5,7 @@ define('IMG', ROOT . 'assets/img/');
 define('ASSETS', ROOT . 'assets/');
 
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'corbetta');
+define('DB_HOST', '172.17.0.2');
+define('DB_NAME', 'teste');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
